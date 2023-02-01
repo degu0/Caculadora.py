@@ -1,5 +1,12 @@
+import math
 def calculator():
-    number_1 = int(input('Enter your first number: '))
+    def factorial(n):
+        fat = 1
+        while (n > 1):
+            fat = fat * n
+            n -= 1
+        return fat
+
     operation = input('''
     Please type in the math operation you would like to complete:
     + for addition
@@ -8,9 +15,16 @@ def calculator():
     / for division
     ** for power
     % for modulo
+    # for square root
+    ! for factorial
+    c for combinatorics
     ''')
-    number_2 = int(input('Enter your second number: '))
+    
+    number_1 = int(input('Enter your first number: '))
 
+    if operation != '!' and operation != '#':
+        number_2 = int(input('Enter your second number: '))
+   
     if operation == '+':
         #Addition
         print('{} + {} = '.format(number_1, number_2))
@@ -35,6 +49,18 @@ def calculator():
         #Modulo
         print('{} / {} = '.format(number_1, number_2))
         print(number_1 % number_2)
+    elif operation == '#':
+        #Square root
+        print('#{} = '.format(number_1))
+        print(math.sqrt(number_1))
+    elif operation == '!':
+        #Factorial
+        print('{}! = '.format(number_1))
+        print(factorial(number_1))
+    elif operation.upper() == 'C':
+        #Combinatorics
+        print('{}! / {}! *'.format(number_1, number_2) + ' ({} - {})! = '.format(number_1, number_2))
+        print (factorial(number_1) / (factorial(number_2) * factorial(number_1 - number_2)))
     else:
         print("You have not typed a valid operator, please run the  program again.")
 
@@ -47,7 +73,6 @@ def calculator():
             calculator()
         elif cal_again.upper() == 'N':
             print('See you later.')
-        else:
-            again()
-    
+
+    again()
 calculator()
